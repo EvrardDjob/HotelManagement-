@@ -148,18 +148,14 @@ export default function Bookings() {
         }
         if (isEdit && editId) {
             put(`/bookings/${editId}`, {
-                // preserveState: true,
                 onSuccess: () => {
                     handleClose();
-                    router.reload({ only: ['bookings', 'guests', 'rooms'] });
                 },
             });
         } else {
             post('/bookings', {
-                // preserveState: true,
                 onSuccess: () => {
                     handleClose();
-                    router.reload({ only: ['bookings', 'guests', 'rooms'] });
                 },
             });
         }
@@ -169,10 +165,6 @@ export default function Bookings() {
         if (window.confirm('Are you sure you want to delete this booking?')) {
             router.delete(`/bookings/${id}`, {
                 // preserveState: false,
-                onSuccess: () => {
-                    handleClose();
-                    router.reload({ only: ['bookings', 'guests', 'rooms'] });
-                },
             });
         }
     };

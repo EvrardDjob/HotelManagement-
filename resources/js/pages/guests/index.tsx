@@ -88,30 +88,23 @@ export default function Guests() {
         e.preventDefault();
         if (isEdit && editId) {
             put(`/guests/${editId}`, {
-                // preserveState: false,
                 onSuccess: () => {
                     handleClose();
-                    router.reload({ only: ['guests'] });
                 },
             });
         } else {
             post('/guests', {
-                // preserveState: false,
                 onSuccess: () => {
                     handleClose();
-                    router.reload({ only: ['guests'] });
                 },
             });
         }
     };
 
     const handleDelete = (id: any) => {
-        if (window.confirm('Are you sure you want to delete this guest?')) {
+        if (window.confirm('Are you sure you want to delete this room?')) {
             router.delete(`/guests/${id}`, {
-                // preserveState: false,
-                onSuccess: () => {
-                    router.reload({ only: ['guests'] });
-                },
+                // preserveScroll: true,
             });
         }
     };

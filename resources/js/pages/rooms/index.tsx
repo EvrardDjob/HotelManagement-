@@ -83,13 +83,15 @@ export default function Rooms() {
         e.preventDefault();
         if (isEdit && editId) {
             put(`/rooms/${editId}`, {
-                // preserveState: false,
-                onSuccess: () => handleClose(),
+                onSuccess: () => {
+                    handleClose();
+                },
             });
         } else {
             post('/rooms', {
-                // preserveState: false,
-                onSuccess: () => handleClose(),
+                onSuccess: () => {
+                    handleClose();
+                },
             });
         }
     };
@@ -97,8 +99,7 @@ export default function Rooms() {
     const handleDelete = (id: any) => {
         if (window.confirm('Are you sure you want to delete this room?')) {
             router.delete(`/rooms/${id}`, {
-                // preserveState: false,
-                preserveScroll: true,
+                // preserveScroll: true,
             });
         }
     };
