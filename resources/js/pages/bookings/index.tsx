@@ -150,12 +150,14 @@ export default function Bookings() {
             put(`/bookings/${editId}`, {
                 onSuccess: () => {
                     handleClose();
+                    router.reload({ only: ['rooms'] }); // rafraîchit uniquement les rooms
                 },
             });
         } else {
             post('/bookings', {
                 onSuccess: () => {
                     handleClose();
+                    router.reload({ only: ['rooms'] }); // rafraîchit uniquement les rooms
                 },
             });
         }
@@ -165,6 +167,9 @@ export default function Bookings() {
         if (window.confirm('Are you sure you want to delete this booking?')) {
             router.delete(`/bookings/${id}`, {
                 // preserveState: false,
+                onSuccess: () => {
+                    router.reload({ only: ['rooms'] }); // rafraîchit uniquement les rooms
+                },
             });
         }
     };

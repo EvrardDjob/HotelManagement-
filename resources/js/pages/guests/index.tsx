@@ -227,7 +227,7 @@ export default function Guests() {
                     </DialogHeader>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         {/*Bloc d'erreurs en haut du formulaire */}
-                        {Object.keys(errors).length > 0 && (
+                        {/* {Object.keys(errors).length > 0 && (
                             <div className="rounded-lg bg-red-100 px-4 py-3 text-red-800">
                                 <p className="font-semibold">
                                     Please fix the following errors:
@@ -240,7 +240,7 @@ export default function Guests() {
                                     )}
                                 </ul>
                             </div>
-                        )}
+                        )} */}
 
                         <div>
                             <Label htmlFor="first_name">First Name</Label>
