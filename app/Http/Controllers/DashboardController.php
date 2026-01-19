@@ -25,6 +25,7 @@ class DashboardController extends Controller
                 'isAdmin' => true,
                 'hotels' => $hotels,
                 'totalHotels' => $totalHotels,
+                'totalRooms' => $totalRooms,
                 'totalManagers' => $totalManagers,
                 'totalGuests' => $totalGuests,
             ]);

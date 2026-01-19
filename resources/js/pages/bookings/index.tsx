@@ -18,6 +18,7 @@ import {
 import AppLayout from '@/layouts/app-layout';
 import { router, useForm, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
+import { route } from 'ziggy-js';
 
 // const emptyForm = {
 //     guest_id: '',
@@ -138,37 +139,40 @@ export default function Bookings() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        // Prevent submission if selected room is not available
+
         const selectedRoom = rooms.find(
             (r: any) => String(r.room_id) === String(formData.room_id),
         );
+
         if (!selectedRoom || selectedRoom.status !== 'available') {
             alert('Please select an available room.');
             return;
         }
+
         if (isEdit && editId) {
-            put(`/bookings/${editId}`, {
+            put(route('bookings.update', editId), {
                 onSuccess: () => {
                     handleClose();
-                    router.reload({ only: ['rooms'] }); // rafraîchit uniquement les rooms
+                    router.reload({ only: ['rooms'] });
                 },
             });
         } else {
-            post('/bookings', {
+            post(route('bookings.store'), {
                 onSuccess: () => {
                     handleClose();
-                    router.reload({ only: ['rooms'] }); // rafraîchit uniquement les rooms
+                    router.reload({ only: ['rooms'] });
                 },
             });
         }
     };
 
     const handleDelete = (id: any) => {
-        if (window.confirm('Are you sure you want to delete this booking?')) {
-            router.delete(`/bookings/${id}`, {
-                // preserveState: false,
+        if (
+            window.confirm('Are you sure you want to delete this reservation?')
+        ) {
+            router.delete(route('bookings.destroy', id), {
                 onSuccess: () => {
-                    router.reload({ only: ['rooms'] }); // rafraîchit uniquement les rooms
+                    // success message
                 },
             });
         }

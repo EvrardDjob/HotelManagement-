@@ -188,7 +188,7 @@ export default function Dashboard() {
                                                         />
                                                         Room {room.room_number}-
                                                         {room.type} -
-                                                        {room.status} - $
+                                                        {room.status} - FCFA
                                                         {room.price_per_night}
                                                     </li>
                                                 ),

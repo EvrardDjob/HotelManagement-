@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label';
 import AppLayout from '@/layouts/app-layout';
 import { router, useForm, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
+import { route } from 'ziggy-js';
 
 export default function Guests() {
     const { guests = [], info_message } = usePage().props as any;
@@ -87,13 +88,13 @@ export default function Guests() {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         if (isEdit && editId) {
-            put(`/guests/${editId}`, {
+            put(route('guests.update', editId), {
                 onSuccess: () => {
                     handleClose();
                 },
             });
         } else {
-            post('/guests', {
+            post(route('guests.store'), {
                 onSuccess: () => {
                     handleClose();
                 },
@@ -102,9 +103,11 @@ export default function Guests() {
     };
 
     const handleDelete = (id: any) => {
-        if (window.confirm('Are you sure you want to delete this room?')) {
-            router.delete(`/guests/${id}`, {
-                // preserveScroll: true,
+        if (window.confirm('Are you sure you want to delete this guest?')) {
+            router.delete(route('guests.destroy', id), {
+                onSuccess: () => {
+                    // success message
+                },
             });
         }
     };

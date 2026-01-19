@@ -85,7 +85,12 @@ export default function AssignManager() {
                                                     {manager.hotel.hotel_name}
                                                     <Button
                                                         size="sm"
-                                                        variant="outline"
+                                                        variant={
+                                                            manager.is_active
+                                                                ? 'destructive'
+                                                                : 'default'
+                                                        }
+                                                        disabled={loading}
                                                         onClick={() =>
                                                             router.post(
                                                                 route(

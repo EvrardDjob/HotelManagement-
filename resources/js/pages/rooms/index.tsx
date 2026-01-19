@@ -18,6 +18,7 @@ import {
 import AppLayout from '@/layouts/app-layout';
 import { router, useForm, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
+import { route } from 'ziggy-js';
 
 // const emptyForm = {
 //     room_number: '',
@@ -82,17 +83,15 @@ export default function Rooms() {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         if (isEdit && editId) {
-            put(`/rooms/${editId}`, {
+            put(route('rooms.update', editId), {
                 onSuccess: () => {
                     handleClose();
-                    router.reload({ only: ['rooms'] });
                 },
             });
         } else {
-            post('/rooms', {
+            post(route('rooms.store'), {
                 onSuccess: () => {
                     handleClose();
-                    router.reload({ only: ['rooms'] }); // rafraîchit uniquement les rooms
                 },
             });
         }
@@ -100,7 +99,11 @@ export default function Rooms() {
 
     const handleDelete = (id: any) => {
         if (window.confirm('Are you sure you want to delete this room?')) {
-            router.delete(`/rooms/${id}`, {});
+            router.delete(route('rooms.destroy', id), {
+                onSuccess: () => {
+                    // success message
+                },
+            });
         }
     };
 
