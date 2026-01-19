@@ -19,6 +19,7 @@ import {
     CalendarCheck,
     Folder,
     LayoutGrid,
+    Shield,
     Users,
 } from 'lucide-react';
 import AppLogo from './app-logo';
@@ -61,6 +62,11 @@ const adminNavItems: NavItem[] = [
         title: 'Manage Hotels',
         href: '/hotels',
         icon: Building2,
+    },
+    {
+        title: 'User Roles',
+        href: '/user-roles',
+        icon: Shield,
     },
 ];
 

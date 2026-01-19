@@ -218,63 +218,74 @@ export default function Bookings() {
                             </tr>
                         </thead>
                         <tbody>
-                            {bookingList.map((booking: any) => {
-                                const guest = guestList.find(
-                                    (g: any) =>
-                                        String(g.guest_id) ===
-                                        String(booking.guest_id),
-                                );
-                                const room = roomList.find(
-                                    (r: any) =>
-                                        String(r.room_id) ==
-                                        String(booking.room_id),
-                                );
-                                return (
-                                    <tr
-                                        key={booking.booking_id}
-                                        className="border-b last:border-0 hover:bg-gray-50 dark:hover:bg-neutral-700"
+                            {bookingList.length === 0 ? (
+                                <tr>
+                                    <td
+                                        colSpan={5}
+                                        className="px-4 py-6 text-center text-gray-500"
                                     >
-                                        <td className="px-4 py-2">
-                                            {guest
-                                                ? `${guest.first_name} ${guest.last_name}`
-                                                : booking.guest_id}
-                                        </td>
-                                        <td className="px-4 py-2">
-                                            {room
-                                                ? `${room.room_number} | ${room.type} | $${room.price_per_night ? parseInt(room.price_per_night) : 0} | ${room.status.charAt(0).toUpperCase() + room.status.slice(1)}`
-                                                : booking.room_id}
-                                        </td>
-                                        <td className="px-4 py-2">
-                                            {booking.check_in_date}
-                                        </td>
-                                        <td className="px-4 py-2">
-                                            {booking.check_out_date}
-                                        </td>
-                                        <td className="flex gap-2 px-4 py-2">
-                                            <Button
-                                                size="sm"
-                                                variant="outline"
-                                                onClick={() =>
-                                                    handleOpenEdit(booking)
-                                                }
-                                            >
-                                                Edit
-                                            </Button>
-                                            <Button
-                                                size="sm"
-                                                variant="destructive"
-                                                onClick={() =>
-                                                    handleDelete(
-                                                        booking.booking_id,
-                                                    )
-                                                }
-                                            >
-                                                Delete
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                );
-                            })}
+                                        Not reservations found.
+                                    </td>
+                                </tr>
+                            ) : (
+                                bookingList.map((booking: any) => {
+                                    const guest = guestList.find(
+                                        (g: any) =>
+                                            String(g.guest_id) ===
+                                            String(booking.guest_id),
+                                    );
+                                    const room = roomList.find(
+                                        (r: any) =>
+                                            String(r.room_id) ==
+                                            String(booking.room_id),
+                                    );
+                                    return (
+                                        <tr
+                                            key={booking.booking_id}
+                                            className="border-b last:border-0 hover:bg-gray-50 dark:hover:bg-neutral-700"
+                                        >
+                                            <td className="px-4 py-2">
+                                                {guest
+                                                    ? `${guest.first_name} ${guest.last_name}`
+                                                    : booking.guest_id}
+                                            </td>
+                                            <td className="px-4 py-2">
+                                                {room
+                                                    ? `${room.room_number} | ${room.type} | $${room.price_per_night ? parseInt(room.price_per_night) : 0} | ${room.status.charAt(0).toUpperCase() + room.status.slice(1)}`
+                                                    : booking.room_id}
+                                            </td>
+                                            <td className="px-4 py-2">
+                                                {booking.check_in_date}
+                                            </td>
+                                            <td className="px-4 py-2">
+                                                {booking.check_out_date}
+                                            </td>
+                                            <td className="flex gap-2 px-4 py-2">
+                                                <Button
+                                                    size="sm"
+                                                    variant="outline"
+                                                    onClick={() =>
+                                                        handleOpenEdit(booking)
+                                                    }
+                                                >
+                                                    Edit
+                                                </Button>
+                                                <Button
+                                                    size="sm"
+                                                    variant="destructive"
+                                                    onClick={() =>
+                                                        handleDelete(
+                                                            booking.booking_id,
+                                                        )
+                                                    }
+                                                >
+                                                    Delete
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                            )}
                         </tbody>
                     </table>
                 </div>

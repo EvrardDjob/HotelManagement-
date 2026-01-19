@@ -151,43 +151,56 @@ export default function Rooms() {
                             </tr>
                         </thead>
                         <tbody>
-                            {roomList.map((room: any) => (
-                                <tr
-                                    key={room.room_id}
-                                    className="border-b last:border-0 hover:bg-gray-50 dark:hover:bg-neutral-700"
-                                >
-                                    <td className="px-4 py-2">
-                                        {room.room_number}
-                                    </td>
-                                    <td className="px-4 py-2 capitalize">
-                                        {room.type}
-                                    </td>
-                                    <td className="px-4 py-2">
-                                        {room.price_per_night}
-                                    </td>
-                                    <td className="px-4 py-2 capitalize">
-                                        {room.status}
-                                    </td>
-                                    <td className="flex gap-2 px-4 py-2">
-                                        <Button
-                                            size="sm"
-                                            variant="outline"
-                                            onClick={() => handleOpenEdit(room)}
-                                        >
-                                            Edit
-                                        </Button>
-                                        <Button
-                                            size="sm"
-                                            variant="destructive"
-                                            onClick={() =>
-                                                handleDelete(room.room_id)
-                                            }
-                                        >
-                                            Delete
-                                        </Button>
+                            {roomList.length === 0 ? (
+                                <tr>
+                                    <td
+                                        colSpan={7}
+                                        className="px-4 py-6 text-center text-gray-500"
+                                    >
+                                        No guests found.
                                     </td>
                                 </tr>
-                            ))}
+                            ) : (
+                                roomList.map((room: any) => (
+                                    <tr
+                                        key={room.room_id}
+                                        className="border-b last:border-0 hover:bg-gray-50 dark:hover:bg-neutral-700"
+                                    >
+                                        <td className="px-4 py-2">
+                                            {room.room_number}
+                                        </td>
+                                        <td className="px-4 py-2 capitalize">
+                                            {room.type}
+                                        </td>
+                                        <td className="px-4 py-2">
+                                            {room.price_per_night}
+                                        </td>
+                                        <td className="px-4 py-2 capitalize">
+                                            {room.status}
+                                        </td>
+                                        <td className="flex gap-2 px-4 py-2">
+                                            <Button
+                                                size="sm"
+                                                variant="outline"
+                                                onClick={() =>
+                                                    handleOpenEdit(room)
+                                                }
+                                            >
+                                                Edit
+                                            </Button>
+                                            <Button
+                                                size="sm"
+                                                variant="destructive"
+                                                onClick={() =>
+                                                    handleDelete(room.room_id)
+                                                }
+                                            >
+                                                Delete
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
                         </tbody>
                     </table>
                 </div>
