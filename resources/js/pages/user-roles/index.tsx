@@ -11,6 +11,7 @@ import AppLayout from '@/layouts/app-layout';
 import { Head, router, usePage } from '@inertiajs/react';
 import { Shield, Trash2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { route } from 'ziggy-js';
 
 interface User {
     id: number;
@@ -56,7 +57,7 @@ export default function UserRoles() {
                 )
             ) {
                 router.post(
-                    `/user-roles/${userId}/update-role`,
+                    route('user-roles.update-role', userId),
                     { role: newRole },
                     {
                         preserveState: false,
@@ -85,7 +86,7 @@ export default function UserRoles() {
                 `Are you sure you want to delete ${userName}? This action cannot be undone.`,
             )
         ) {
-            router.delete(`/user-roles/${userId}`, {
+            router.delete(route('user-roles.destroy', userId), {
                 preserveState: false,
             });
         }
@@ -94,7 +95,9 @@ export default function UserRoles() {
     const userList = Array.isArray(users) ? users : [];
 
     return (
-        <AppLayout breadcrumbs={[{ title: 'User Roles', href: '/user-roles' }]}>
+        <AppLayout
+            breadcrumbs={[{ title: 'User Roles', href: 'user-roles.index' }]}
+        >
             <Head title="User Roles" />
             <div className="p-6">
                 <div className="mb-4 flex items-center">

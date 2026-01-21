@@ -15,8 +15,8 @@ class Guest extends Model
         'last_name',
         'email',
         'phone',
-        'check_in_date',
-        'check_out_date',
+        // 'check_in_date',
+        // 'check_out_date',
 
     ];
     const UPDATED_AT = null;

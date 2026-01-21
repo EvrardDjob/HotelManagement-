@@ -42,9 +42,13 @@ class BookingController extends Controller
         $validated = $request->validate([
             'guest_id' => 'required|exists:guests,guest_id',
             'room_id' => 'required|exists:rooms,room_id',
-            'check_in_date' => 'required|date',
+            'check_in_date' => 'required|date|after_or_equal:today',
             'check_out_date' => 'required|date|after_or_equal:check_in_date',
-        ]);
+        ],[
+            'check_in_date.after_or_equal' => 'The check-in date cannot be in the past.',
+            'check_out_date.after' => 'The check-out date must be after the check-in date.',
+        ] 
+        );
 
         // Vérifier que la chambre appartient au bon tenant ET est disponible
         $room = Room::where('tenant_id', $user->tenant_id)
@@ -93,9 +97,13 @@ class BookingController extends Controller
         $validated = $request->validate([
             'guest_id' => 'required|exists:guests,guest_id',
             'room_id' => 'required|exists:rooms,room_id',
-            'check_in_date' => 'required|date',
+            'check_in_date' => 'required|date|after_or_equal:today',
             'check_out_date' => 'required|date|after_or_equal:check_in_date',
-        ]);
+        ],[
+            'check_in_date.after_or_equal' => 'The check-in date cannot be in the past.',
+            'check_out_date.after' => 'The check-out date must be after the check-in date.',
+        ] 
+        );
 
         // Si la chambre a changé, libérer l'ancienne et occuper la nouvelle
         if ($booking->room_id != $validated['room_id']) {

@@ -26,8 +26,8 @@ class GuestController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
-            'check_in_date' => 'nullable|date',
-            'check_out_date' => 'nullable|date|after_or_equal:check_in_date',
+            // 'check_in_date' => 'nullable|date',
+            // 'check_out_date' => 'nullable|date|after_or_equal:check_in_date',
         ]);
         $data['tenant_id'] = $user->tenant_id;
         Guest::create($data);
@@ -55,8 +55,8 @@ class GuestController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
-            'check_in_date' => 'nullable|date',
-            'check_out_date' => 'nullable|date|after_or_equal:check_in_date',
+            // 'check_in_date' => 'nullable|date',
+            // 'check_out_date' => 'nullable|date|after_or_equal:check_in_date',
         ]);
         $guest->update($data);
         return redirect()->route('guests.index')->with('success', 'Guest has been updated');

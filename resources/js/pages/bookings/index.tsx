@@ -60,6 +60,8 @@ export default function Bookings() {
     const roomList = Array.isArray(rooms) ? rooms : [];
     const bookingList = Array.isArray(bookings) ? bookings : [];
 
+    const today = new Date().toISOString().split('T')[0];
+
     useEffect(() => {
         if (info_message?.success) {
             setShowSuccess(true);
@@ -386,6 +388,7 @@ export default function Bookings() {
                                 id="check_in_date"
                                 name="check_in_date"
                                 type="date"
+                                min={today}
                                 value={formData.check_in_date}
                                 onChange={handleChange}
                                 placeholder="Select check-in date"
@@ -405,6 +408,7 @@ export default function Bookings() {
                                 id="check_out_date"
                                 name="check_out_date"
                                 type="date"
+                                min={formData.check_in_date || today}
                                 value={formData.check_out_date}
                                 onChange={handleChange}
                                 placeholder="Select check-out date"

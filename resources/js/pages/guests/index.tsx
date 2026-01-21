@@ -149,12 +149,12 @@ export default function Guests() {
                                 <th className="px-4 py-2 text-left font-semibold">
                                     Phone
                                 </th>
-                                <th className="px-4 py-2 text-left font-semibold">
+                                {/* <th className="px-4 py-2 text-left font-semibold">
                                     Check In
                                 </th>
                                 <th className="px-4 py-2 text-left font-semibold">
                                     Check Out
-                                </th>
+                                </th> */}
                                 <th className="px-4 py-2 text-left font-semibold">
                                     Actions
                                 </th>
@@ -164,7 +164,7 @@ export default function Guests() {
                             {guestList.length === 0 ? (
                                 <tr>
                                     <td
-                                        colSpan={7}
+                                        colSpan={5}
                                         className="px-4 py-6 text-center text-gray-500"
                                     >
                                         No guests found.
@@ -188,12 +188,12 @@ export default function Guests() {
                                         <td className="px-4 py-2">
                                             {guest.phone}
                                         </td>
-                                        <td className="px-4 py-2">
+                                        {/* <td className="px-4 py-2">
                                             {guest.check_in_date || '-'}
                                         </td>
                                         <td className="px-4 py-2">
                                             {guest.check_out_date || '-'}
-                                        </td>
+                                        </td> */}
                                         <td className="flex gap-2 px-4 py-2">
                                             <Button
                                                 size="sm"
@@ -307,7 +307,7 @@ export default function Guests() {
                                 </p>
                             )}
                         </div>
-                        <div>
+                        {/* <div>
                             <Label htmlFor="check_in_date">Check In Date</Label>
                             <Input
                                 id="check_in_date"
@@ -340,7 +340,7 @@ export default function Guests() {
                                     {errors.check_out_date}
                                 </p>
                             )}
-                        </div>
+                        </div> */}
                         <div className="flex justify-end gap-2">
                             <Button
                                 type="button"

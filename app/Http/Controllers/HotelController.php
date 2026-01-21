@@ -38,6 +38,6 @@ class HotelController extends Controller
         ]);
 
         $hotel->update($data);
-        return redirect()->route('hotels.index');
+        return redirect()->route('hotels.index')->with('success', 'hotel infos have been updated successfully.');;
     }
 }

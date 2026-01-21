@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\AssignManagerController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\UserRoleController;
@@ -29,6 +30,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('user-roles', [UserRoleController::class, 'index'])->name('user-roles.index');
     Route::post('user-roles/{id}/update-role', [UserRoleController::class, 'updateRole'])->name('user-roles.update-role');
     Route::delete('user-roles/{id}', [UserRoleController::class, 'destroy'])->name('user-roles.destroy');
+
+
+    Route::get('notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::delete('notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+    Route::post('notifications/{id}/mark-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark-read');
+    Route::post('notifications/mark-all-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.mark-all-read');
+    Route::get('notifications/unread-count', [NotificationController::class, 'getUnreadCount'])->name('notifications.unread-count');
+
+
 
     Route::resource('rooms', RoomController::class)->except(['create','edit']);
     Route::resource('guests', GuestController::class)->except(['create','edit']);

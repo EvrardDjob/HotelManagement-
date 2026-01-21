@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
 import { Head, router, usePage } from '@inertiajs/react';
 import { Users } from 'lucide-react';
@@ -53,174 +54,188 @@ export default function AssignManager() {
                     <Users className="mr-2 text-blue-500" size={32} />
                     <h1 className="text-2xl font-bold">Assign Manager</h1>
                 </div>
-                <div className="overflow-x-auto rounded-lg border shadow dark:border-gray-700">
-                    <table className="min-w-full bg-white dark:bg-gray-900">
-                        <thead>
-                            <tr className="bg-gray-100 dark:bg-gray-800">
-                                <th className="px-4 py-2 text-left">Name</th>
-                                <th className="px-4 py-2 text-left">Email</th>
-                                <th className="px-4 py-2 text-left">
-                                    Assigned Hotel
-                                </th>
-                                <th className="px-4 py-2 text-left">Status</th>
-                                <th className="px-4 py-2 text-left">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {managers && managers.length > 0 ? (
-                                managers.map((manager) => (
-                                    <tr
-                                        key={manager.id}
-                                        className="border-t dark:border-gray-700"
-                                    >
-                                        <td className="px-4 py-2 font-medium">
-                                            {manager.name}
-                                        </td>
-                                        <td className="px-4 py-2">
-                                            {manager.email}
-                                        </td>
-                                        <td className="px-4 py-2">
-                                            {manager.hotel ? (
-                                                <div className="flex items-center gap-2">
-                                                    {manager.hotel.hotel_name}
-                                                    <Button
-                                                        size="sm"
-                                                        variant={
-                                                            manager.is_active
-                                                                ? 'destructive'
-                                                                : 'default'
+                <Card className="p-6">
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full rounded-lg border bg-white text-sm dark:bg-gray-900">
+                            <thead>
+                                <tr className="bg-gray-100 dark:bg-gray-800">
+                                    <th className="px-4 py-2 text-left font-semibold">
+                                        Name
+                                    </th>
+                                    <th className="px-4 py-2 text-left font-semibold">
+                                        Email
+                                    </th>
+                                    <th className="px-4 py-2 text-left font-semibold">
+                                        Assigned Hotel
+                                    </th>
+                                    <th className="px-4 py-2 text-left font-semibold">
+                                        Status
+                                    </th>
+                                    <th className="px-4 py-2 text-left font-semibold">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {managers && managers.length > 0 ? (
+                                    managers.map((manager) => (
+                                        <tr
+                                            key={manager.id}
+                                            className="border-t dark:border-gray-700"
+                                        >
+                                            <td className="px-4 py-2 font-medium">
+                                                {manager.name}
+                                            </td>
+                                            <td className="px-4 py-2">
+                                                {manager.email}
+                                            </td>
+                                            <td className="px-4 py-2">
+                                                {manager.hotel ? (
+                                                    <div className="flex items-center gap-2">
+                                                        {
+                                                            manager.hotel
+                                                                .hotel_name
                                                         }
-                                                        disabled={loading}
-                                                        onClick={() =>
-                                                            router.post(
-                                                                route(
-                                                                    'assign-manager.unassign',
-                                                                    manager.id,
-                                                                ),
-                                                            )
-                                                        }
-                                                    >
-                                                        Unassign
-                                                    </Button>
-                                                </div>
-                                            ) : (
-                                                <form
-                                                    onSubmit={(e) => {
-                                                        e.preventDefault();
-                                                        const formData =
-                                                            new FormData(
-                                                                e.currentTarget,
-                                                            );
-                                                        const tenantId = Number(
-                                                            formData.get(
-                                                                'tenant_id',
-                                                            ),
-                                                        );
-                                                        if (tenantId)
-                                                            handleAssign(
-                                                                manager.id,
-                                                                tenantId,
-                                                            );
-                                                    }}
-                                                >
-                                                    <select
-                                                        name="tenant_id"
-                                                        className="mr-2 rounded border px-2 py-1 dark:border-gray-700 dark:bg-gray-800"
-                                                        required
-                                                        defaultValue=""
-                                                        disabled={
-                                                            loading ||
-                                                            unassignedHotels.length ===
-                                                                0
-                                                        }
-                                                    >
-                                                        <option
-                                                            value=""
-                                                            disabled
+                                                        <Button
+                                                            size="sm"
+                                                            variant={
+                                                                manager.is_active
+                                                                    ? 'destructive'
+                                                                    : 'default'
+                                                            }
+                                                            disabled={loading}
+                                                            onClick={() =>
+                                                                router.post(
+                                                                    route(
+                                                                        'assign-manager.unassign',
+                                                                        manager.id,
+                                                                    ),
+                                                                )
+                                                            }
                                                         >
-                                                            Select hotel...
-                                                        </option>
-                                                        {unassignedHotels.map(
-                                                            (hotel) => (
-                                                                <option
-                                                                    key={
-                                                                        hotel.tenant_id
-                                                                    }
-                                                                    value={
-                                                                        hotel.tenant_id
-                                                                    }
-                                                                >
-                                                                    {
-                                                                        hotel.hotel_name
-                                                                    }
-                                                                </option>
-                                                            ),
-                                                        )}
-                                                    </select>
-                                                    <Button
-                                                        size="sm"
-                                                        type="submit"
-                                                        disabled={
-                                                            loading ||
-                                                            unassignedHotels.length ===
-                                                                0
-                                                        }
+                                                            Unassign
+                                                        </Button>
+                                                    </div>
+                                                ) : (
+                                                    <form
+                                                        onSubmit={(e) => {
+                                                            e.preventDefault();
+                                                            const formData =
+                                                                new FormData(
+                                                                    e.currentTarget,
+                                                                );
+                                                            const tenantId =
+                                                                Number(
+                                                                    formData.get(
+                                                                        'tenant_id',
+                                                                    ),
+                                                                );
+                                                            if (tenantId)
+                                                                handleAssign(
+                                                                    manager.id,
+                                                                    tenantId,
+                                                                );
+                                                        }}
                                                     >
-                                                        Assign
-                                                    </Button>
-                                                </form>
-                                            )}
-                                        </td>
-                                        <td className="px-4 py-2">
-                                            <span
-                                                className={
-                                                    manager.is_active
-                                                        ? 'text-green-600'
-                                                        : 'text-red-600'
-                                                }
-                                            >
-                                                {manager.is_active
-                                                    ? 'Active'
-                                                    : 'Inactive'}
-                                            </span>
-                                        </td>
-                                        <td className="px-4 py-2">
-                                            <Button
-                                                size="sm"
-                                                variant={
-                                                    manager.is_active
-                                                        ? 'destructive'
-                                                        : 'default'
-                                                }
-                                                onClick={() =>
-                                                    router.post(
-                                                        route(
-                                                            'users.toggleActive',
-                                                            manager.id,
-                                                        ),
-                                                    )
-                                                }
-                                            >
-                                                {manager.is_active
-                                                    ? 'Deactivate'
-                                                    : 'Activate'}
-                                            </Button>
+                                                        <select
+                                                            name="tenant_id"
+                                                            className="mr-2 rounded border px-2 py-1 dark:border-gray-700 dark:bg-gray-800"
+                                                            required
+                                                            defaultValue=""
+                                                            disabled={
+                                                                loading ||
+                                                                unassignedHotels.length ===
+                                                                    0
+                                                            }
+                                                        >
+                                                            <option
+                                                                value=""
+                                                                disabled
+                                                            >
+                                                                Select hotel...
+                                                            </option>
+                                                            {unassignedHotels.map(
+                                                                (hotel) => (
+                                                                    <option
+                                                                        key={
+                                                                            hotel.tenant_id
+                                                                        }
+                                                                        value={
+                                                                            hotel.tenant_id
+                                                                        }
+                                                                    >
+                                                                        {
+                                                                            hotel.hotel_name
+                                                                        }
+                                                                    </option>
+                                                                ),
+                                                            )}
+                                                        </select>
+                                                        <Button
+                                                            size="sm"
+                                                            type="submit"
+                                                            disabled={
+                                                                loading ||
+                                                                unassignedHotels.length ===
+                                                                    0
+                                                            }
+                                                        >
+                                                            Assign
+                                                        </Button>
+                                                    </form>
+                                                )}
+                                            </td>
+                                            <td className="px-4 py-2">
+                                                <span
+                                                    className={
+                                                        manager.is_active
+                                                            ? 'text-green-600'
+                                                            : 'text-red-600'
+                                                    }
+                                                >
+                                                    {manager.is_active
+                                                        ? 'Active'
+                                                        : 'Inactive'}
+                                                </span>
+                                            </td>
+                                            <td className="px-4 py-2">
+                                                <Button
+                                                    size="sm"
+                                                    variant={
+                                                        manager.is_active
+                                                            ? 'destructive'
+                                                            : 'default'
+                                                    }
+                                                    onClick={() =>
+                                                        router.post(
+                                                            route(
+                                                                'users.toggleActive',
+                                                                manager.id,
+                                                            ),
+                                                        )
+                                                    }
+                                                >
+                                                    {manager.is_active
+                                                        ? 'Deactivate'
+                                                        : 'Activate'}
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td
+                                            colSpan={5}
+                                            className="px-4 py-6 text-center text-gray-500 dark:text-gray-400"
+                                        >
+                                            No managers found.
                                         </td>
                                     </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td
-                                        colSpan={3}
-                                        className="px-4 py-6 text-center text-gray-500 dark:text-gray-400"
-                                    >
-                                        No managers found.
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
-                </div>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                </Card>
             </div>
         </AppLayout>
     );

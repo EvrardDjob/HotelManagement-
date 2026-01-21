@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Inspiring;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -38,6 +39,14 @@ class HandleInertiaRequests extends Middleware
     {
         [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
 
+        // count notifications 
+        $unreadNotifications = 0;
+
+        // we check if the user is connected and has a tenant_id
+        if($request->user() && isset($request->user()->tenant_id)){
+            $unreadNotifications = Notification::where('tenant_id', $request->user()->tenant_id)->where('is_read', false)->count();
+        }
+
         return [
             ...parent::share($request),
             'name' => config('app.name'),
@@ -46,6 +55,9 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+
+            // add counter for the front-end
+            'unreadNotifications' => $unreadNotifications,
 
             // to handle the display of messages on the screen
             'info_message' => [
