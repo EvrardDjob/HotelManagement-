@@ -1,3 +1,4 @@
+import { Bed } from 'lucide-react';
 import { SVGAttributes } from 'react';
 
 export default function AppLogoIcon(props: SVGAttributes<SVGElement>) {
@@ -23,9 +24,16 @@ export default function AppLogoIcon(props: SVGAttributes<SVGElement>) {
         //     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABG0lEQVR4nO2YTQrCMBBGv40eou49gTu9gOiNdCseqjvTIt5Cbd14iUhhCiWk6X86rfNgQPq10zxSEwggCMKsOVO58tOIeSkrABsAX6rsd1DIg5HzShIA2qg3o7yStdEkoWtc8lo8Cw1eDHMnCwAhgCNVSNe45AJrlGUF4FJq6gK34edP6IcHgDv4oOp+/zn5N8cF3XQ8sxSIjRUh8pjrPgRsy5qvXIsARAAigI4CkdFcecx1HwJjokVgDgJxxU56AJCW/Bm1ccKwt7wzdvT3sgrZznLKynbGozkuo64SAZkBTEwgqthJuwpEjv69CNR9pq2Ai/8T+NADWwYCO7o/2yRrc20xoKHr0kRgSRL5TIxZKQ0+G5MgCAJ48QMZSZIoT+cd5gAAAABJRU5ErkJggg=="
         //     alt="5-star-hotel"
         // ></img>
-        <img
-            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACX0lEQVR4nO2Yu2sUURSHJ7qBQBS10UBIjKQQJYE0gmKzEBWJFrFK4yPbRIh/gIgPtAkrCEkZglin0RSJlY8Qg4XY+B8INgEXbSwUFT45cFYvlzuvy05mMPeDA7vn3PO758c8dnaiKBAIBOIALklEVQU4CHQl1N9LJNS7RCMqC+AdMGHlRoHzwCz/mNXcqLV2QjSKHvK0hPG9FzgDXNfhXgEX2sMBa8SzapiUHulFtUSzN25fn8H3qehLjbOaOwpsOYab175uYNFRl1y3rpl31LdU27mvj4E+4IOxgXzu09oA8M2oLVi9w44Bh601C0ZNtAbS9vUxMWkITRr5fs19An4DS1bfjNbfaggz1pol7RUNoT9tXx8DU8BFjSkjPwLcA3qAE8Adq68B3AB2acjnaWvNXe3tUa2RtH13DsBxYAV4UZFYAY7lMfCM6vE0j4HbVI9beU+jMb0fVyHGoh0HMAjcrEgM+hioUx3qwcD/ZGBO7wxNK/8duAaci3mkXtXaNPAjo2YhBnZrvWblN41eGcZm3KhvZtTsvAFrjcl6Su/fIWRtRs1CjkCtgCNQi9EsxEBTB3zouAYaep4/d/Staa3huAaaMZqFGCiDejBg8Fn/bLdw8zHhuf418MVDs95JA4e1PuSorbcvyATdQ8DXHJrbdhsVHmTU3sihua0G7mfULvV3YEjrRzplgGRNbwOnYsRa+kqw1UEDrQRN4aSPgQPAL/LhayCJn8D+3AZ0oyeUb+Cx1/C60V7gTYkGNoA93gaMB6wrwHKGF1BXM2o+StFZBi63H7MDgUAgEIhi+AO0aMIwhaJL+wAAAABJRU5ErkJggg=="
-            alt="5-star-hotel"
-        ></img>
+        // <img
+        //     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACX0lEQVR4nO2Yu2sUURSHJ7qBQBS10UBIjKQQJYE0gmKzEBWJFrFK4yPbRIh/gIgPtAkrCEkZglin0RSJlY8Qg4XY+B8INgEXbSwUFT45cFYvlzuvy05mMPeDA7vn3PO758c8dnaiKBAIBOIALklEVQU4CHQl1N9LJNS7RCMqC+AdMGHlRoHzwCz/mNXcqLV2QjSKHvK0hPG9FzgDXNfhXgEX2sMBa8SzapiUHulFtUSzN25fn8H3qehLjbOaOwpsOYab175uYNFRl1y3rpl31LdU27mvj4E+4IOxgXzu09oA8M2oLVi9w44Bh601C0ZNtAbS9vUxMWkITRr5fs19An4DS1bfjNbfaggz1pol7RUNoT9tXx8DU8BFjSkjPwLcA3qAE8Adq68B3AB2acjnaWvNXe3tUa2RtH13DsBxYAV4UZFYAY7lMfCM6vE0j4HbVI9beU+jMb0fVyHGoh0HMAjcrEgM+hioUx3qwcD/ZGBO7wxNK/8duAaci3mkXtXaNPAjo2YhBnZrvWblN41eGcZm3KhvZtTsvAFrjcl6Su/fIWRtRs1CjkCtgCNQi9EsxEBTB3zouAYaep4/d/Staa3huAaaMZqFGCiDejBg8Fn/bLdw8zHhuf418MVDs95JA4e1PuSorbcvyATdQ8DXHJrbdhsVHmTU3sihua0G7mfULvV3YEjrRzplgGRNbwOnYsRa+kqw1UEDrQRN4aSPgQPAL/LhayCJn8D+3AZ0oyeUb+Cx1/C60V7gTYkGNoA93gaMB6wrwHKGF1BXM2o+StFZBi63H7MDgUAgEIhi+AO0aMIwhaJL+wAAAABJRU5ErkJggg=="
+        //     alt="5-star-hotel"
+        // ></img>
+
+        <div className="rounded-lg bg-white-600 p-2 transition-colors duration-300 dark:bg-slate-800">
+            {/* We use 'dark:bg-slate-800' to automatically switch colors 
+               when the 'dark' class is present on the HTML tag.
+            */}
+            <Bed className="text-white" size={24} {...props} />
+        </div>
     );
 }
