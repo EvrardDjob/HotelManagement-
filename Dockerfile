@@ -71,10 +71,10 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN mkdir -p /var/log/supervisor
 
 # Run Laravel setup commands
-RUN php artisan storage:link || true \
-    && php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache
+RUN php artisan storage:link || true
+
+# Just clear everything to be safe
+RUN php artisan config:clear && php artisan route:clear
 
 # Expose port 10000 (Render's default)
 EXPOSE 10000

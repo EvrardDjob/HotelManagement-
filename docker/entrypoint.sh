@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Clear any cache that might have been created
+php artisan config:clear
+php artisan route:clear
+
 # Run migrations
 php artisan migrate --force
 
