@@ -6,6 +6,9 @@ php artisan cache:clear
 php artisan view:clear
 php artisan route:clear
 
+# Run Seeders 
+php artisan db:seed --force
+
 # Run migrations
 php artisan migrate --force
 

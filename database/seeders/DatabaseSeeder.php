@@ -15,12 +15,23 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::firstOrCreate(
-            ['email' => 'test@example.com'],
+        // Create Admin User
+        User::updateOrCreate(
+            ['email' => 'evrarddjob@gmail.com'],
             [
-                'name' => 'Test User',
-                'password' => 'password',
-                'email_verified_at' => now(),
+                'name' => 'Admin Evrard',
+                'password' => Hash::make('8x4dfsoxpcxlmdcx'),
+                'role' => 'admin',
+            ]
+        );
+
+        // Create Manager User
+        User::updateOrCreate(
+            ['email' => 'evrard@gmail.com'],
+            [
+                'name' => 'Manager Evrard',
+                'password' => Hash::make('fxc4vrfxwc1v'),
+                'role' => 'manager',
             ]
         );
     }

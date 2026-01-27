@@ -66,7 +66,7 @@ export default function Welcome({ canRegister }: Props) {
                     </button>
 
                     <Link
-                        href="/login"
+                        href={route('login')}
                         className="px-4 py-2 text-sm font-medium transition hover:text-blue-600 dark:hover:text-blue-400"
                     >
                         Log in
