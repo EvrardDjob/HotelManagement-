@@ -27,10 +27,10 @@ class DatabaseSeeder extends Seeder
 
         // Create Manager User
         User::updateOrCreate(
-            ['email' => 'evrard@gmail.com'],
+            ['email' => 'evrardkev@gmail.com'],
             [
                 'name' => 'Manager Evrard',
-                'password' => Hash::make('fxc4vrfxwc1v'),
+                'password' => Hash::make('cx35vxc6v54ccs'),
                 'role' => 'manager',
             ]
         );
